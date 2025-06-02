@@ -4,7 +4,7 @@
  entender, criar, redimensionar, adicionar e remover volumes lógicos usando LVM.
  ## 1. Conceitos Básicos
  Antes de começar, é importante entender os componentes principais do LVM:- **Physical Volume (PV)**: Partição ou disco físico que será usado pelo LVM.- **Volume Group (VG)**: Grupo que combina um ou mais PVs.- **Logical Volume (LV)**: Volumes criados dentro de um VG, que podem ser formatados e
- montados como sistemas de arquivos.--
+ montados como sistemas de arquivos.
 ## 2. Preparar o Ambiente
  ### Passo 1: Listar discos disponíveis
  ```bash
@@ -24,7 +24,7 @@
  3. Alterar o tipo para LVM:
    - Pressione `t` e escolha o tipo `8e` (Linux LVM).
  4. Salve e saia:
-   - Pressione `w` para salvar as alterações.--
+   - Pressione `w` para salvar as alterações.
 ## 3. Criar Physical Volume (PV)
  ```bash
  pvcreate /dev/sdX1
@@ -34,7 +34,7 @@
  ```bash
  pvdisplay
  ```
---
+
 ## 4. Criar Volume Group (VG)
  ```bash
  vgcreate meu_vg /dev/sdX1
@@ -43,7 +43,7 @@
  Verifique o VG:
  ```bash
  vgdisplay
- ```--
+ ```
 ## 5. Criar Logical Volume (LV)
  ### Criar um LV de tamanho especificado (exemplo: 10G):
  ```bash
@@ -71,7 +71,7 @@
  Verifique o ponto de montagem:
  ```bash
  df -h
- ```--
+ ```
 ## 6. Redimensionar Logical Volume
  ### Expandir o LV:
  1. Redimensionar o LV (exemplo: aumentar para 20G):
@@ -102,7 +102,7 @@
  5. Monte novamente:
    ```bash
    mount /dev/meu_vg/meu_lv /mnt/meu_lv
-   ```--
+   ```
 ## 7. Adicionar Novo Disco ao Volume Group
  1. Crie um PV no novo disco:
    ```bash
@@ -111,7 +111,7 @@
  2. Adicione o PV ao VG:
    ```bash
    vgextend meu_vg /dev/sdY1
-   ```--
+   ```
 ## 8. Remover Logical Volume
  1. Desmonte o LV:
    ```bash
@@ -121,17 +121,14 @@
    ```bash
    lvremove /dev/meu_vg/meu_lv
    ```
---
 ## 9. Remover Volume Group
  1. Certifique-se de que todos os LVs foram removidos.
  2. Remova o VG:
    ```bash
    vgremove meu_vg
-   ```--
+   ```
 ## 10. Remover Physical Volume
  ```bash
  pvremove /dev/sdX1
  ```
- > Isso remove as informações de LVM da partição.--
-Com esses passos, você agora pode gerenciar LVM de forma eficiente. Cada comando é
- acompanhado de explicações e exemplos para facilitar o aprendizado.
+ > Isso remove as informações de LVM da partição.
